@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RankedDasEstrelas.Infra", "RankedDasEstrelas.Infra\RankedDasEstrelas.Infra.csproj", "{160FEE17-C465-4ADE-A9A3-895F715E0569}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RankDasEstrelas.Bot", "RankedDasEstrelas.App\RankDasEstrelas.Bot.csproj", "{A89E27E4-5899-4D03-8BF7-E3A925517A76}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RankedDasEstrelas.Selenium", "RankedDasEstrelas.Selenium\RankedDasEstrelas.Selenium.csproj", "{1DE13FFA-37D9-4D70-942F-F6D2AAAFAA98}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RankedDasEstrelas.Domain", "RankedDasEstrelas.Domain\RankedDasEstrelas.Domain.csproj", "{BCFB3742-3E8B-4BE9-87B3-889FA757FB34}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{160FEE17-C465-4ADE-A9A3-895F715E0569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{160FEE17-C465-4ADE-A9A3-895F715E0569}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{160FEE17-C465-4ADE-A9A3-895F715E0569}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{160FEE17-C465-4ADE-A9A3-895F715E0569}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A89E27E4-5899-4D03-8BF7-E3A925517A76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A89E27E4-5899-4D03-8BF7-E3A925517A76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A89E27E4-5899-4D03-8BF7-E3A925517A76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A89E27E4-5899-4D03-8BF7-E3A925517A76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DE13FFA-37D9-4D70-942F-F6D2AAAFAA98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DE13FFA-37D9-4D70-942F-F6D2AAAFAA98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DE13FFA-37D9-4D70-942F-F6D2AAAFAA98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DE13FFA-37D9-4D70-942F-F6D2AAAFAA98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCFB3742-3E8B-4BE9-87B3-889FA757FB34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCFB3742-3E8B-4BE9-87B3-889FA757FB34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCFB3742-3E8B-4BE9-87B3-889FA757FB34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCFB3742-3E8B-4BE9-87B3-889FA757FB34}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E8EEE0DA-5FA2-4E87-B30B-7D4EC059414A}
+	EndGlobalSection
+EndGlobal

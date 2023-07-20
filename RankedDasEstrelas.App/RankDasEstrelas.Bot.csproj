@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DSharpPlus" Version="4.4.2" />
+    <PackageReference Include="DSharpPlus.CommandsNext" Version="4.4.2" />
+    <PackageReference Include="DSharpPlus.Interactivity" Version="4.4.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RankedDasEstrelas.Domain\RankedDasEstrelas.Domain.csproj" />
+    <ProjectReference Include="..\RankedDasEstrelas.Infra\RankedDasEstrelas.Infra.csproj" />
+    <ProjectReference Include="..\RankedDasEstrelas.Selenium\RankedDasEstrelas.Selenium.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="C:\Users\alpac\.nuget\packages\mongodb.driver.core\2.16.1\build\..\runtimes\osx\native\libsnappy64.dylib" Link="Response\libsnappy64.dylib" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Bson" Version="2.16.1" />
+    <PackageReference Include="MongoDB.Driver" Version="2.16.1" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.16.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RankedDasEstrelas.Domain\RankedDasEstrelas.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
