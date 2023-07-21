@@ -15,7 +15,7 @@ namespace RankedDasEstrelas.Domain.Validations
 
         private UrlValidationDto ValidateUnplayedMatch(string url)
         {
-            bool unplayedMatch = matchRepository.FindMatchOrDefaultAsync(url.Split('/')[^1]).Result is not null;
+            bool unplayedMatch = matchRepository.FindMatchOrDefaultAsync(url.Split('/')[^1]).Result is null;
             return new UrlValidationDto(unplayedMatch, unplayedMatch ? "Partida não contabilizada" : "Esta partida já foi contabilizada!");
         }
 
