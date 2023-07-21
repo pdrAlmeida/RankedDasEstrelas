@@ -16,8 +16,11 @@ namespace RankedDasEstrelas.Selenium.WebDriver
 
                 var chromeOptions = new ChromeOptions
                 {
-                    PageLoadStrategy = PageLoadStrategy.Eager
+                    PageLoadStrategy = PageLoadStrategy.Eager,
+                    
                 };
+                chromeOptions.AddArgument("--headless");
+                chromeOptions.AddArgument("--disable-gpu");
 
                 WebDriver = new ChromeDriver($"{AppDomain.CurrentDomain.BaseDirectory}driver", chromeOptions, TimeSpan.FromMinutes(5));
                 WebDriver.Manage().Timeouts().PageLoad = TimeSpan.FromMinutes(10);
