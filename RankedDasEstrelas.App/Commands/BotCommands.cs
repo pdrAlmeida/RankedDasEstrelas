@@ -193,7 +193,7 @@ namespace RankDasEstrelas.Bot.Commands
                 await commandContext.WriteAsync(await rankingTableService.GetRankingTable());
             }
             else
-                await commandContext.RespondListAsync(validations.Select(p => p.Message));
+                await commandContext.RespondListAsync(validations.Where(p => !p.Valid).Select(p => p.Message));
         }
     }
 }
