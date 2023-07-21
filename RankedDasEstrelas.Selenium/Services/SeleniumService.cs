@@ -13,7 +13,6 @@ namespace RankedDasEstrelas.Selenium.Services
     public class SeleniumService : ISeleniumService
     {
         private readonly IPlayerRepository playerRepository;
-        private readonly IWebDriver WebDriver = SeleniumWebDriver.WebDriver;
 
         public SeleniumService(IPlayerRepository playerRepository)
         {
@@ -27,7 +26,7 @@ namespace RankedDasEstrelas.Selenium.Services
             try
             {
                 SeleniumWebDriver.InitializeWebDriver();
-                WebDriver.Navigate().GoToUrl(url);
+                SeleniumWebDriver.WebDriver.Navigate().GoToUrl(url);
 
                 Thread.Sleep(1000);
 
@@ -64,16 +63,16 @@ namespace RankedDasEstrelas.Selenium.Services
 
         private void CloseAdBlockNotification()
         {
-            if (WebDriver.FindElement(By.ClassName(@"fc-close-icon")).Text.Contains("cancel"))
+            if (SeleniumWebDriver.WebDriver.FindElement(By.ClassName(@"fc-close-icon")).Text.Contains("cancel"))
             {
                 Console.WriteLine("AdBlock Detected!");
-                WebDriver.FindElement(By.ClassName(@"fc-close-icon")).Click();
+                SeleniumWebDriver.WebDriver.FindElement(By.ClassName(@"fc-close-icon")).Click();
             }
 
-            if (WebDriver.FindElement(By.XPath(@"//*[@id=""__next""]/div[2]/div/div[3]/button")).Displayed)
+            if (SeleniumWebDriver.WebDriver.FindElement(By.XPath(@"//*[@id=""__next""]/div[2]/div/div[3]/button")).Displayed)
             {
                 Console.WriteLine("AdBlock Detected!");
-                WebDriver.FindElement(By.XPath(@"//*[@id=""__next""]/div[2]/div/div[3]/button")).Click();
+                SeleniumWebDriver.WebDriver.FindElement(By.XPath(@"//*[@id=""__next""]/div[2]/div/div[3]/button")).Click();
             }
         }
 
@@ -83,12 +82,12 @@ namespace RankedDasEstrelas.Selenium.Services
 
             for (int i = 1; i < 6; i++)
             {
-                var tr = WebDriver.FindElement(By.XPath(@$"//*[@id='__next']/div[5]/li/div[2]/div[1]/table[1]/tbody/tr[{i}]"));
+                var tr = SeleniumWebDriver.WebDriver.FindElement(By.XPath(@$"//*[@id='__next']/div[5]/li/div[2]/div[1]/table[1]/tbody/tr[{i}]"));
                 var nick = tr.FindElement(By.XPath(@$"//*[@id='__next']/div[5]/li/div[2]/div[1]/table[1]/tbody/tr[{i}]/td[4]/a")).Text;
                 var player = playerRepository.FindByNickNameAsync(nick).Result ?? throw new Exception($"O jogador {nick} não está cadastrado!");
 
                 matchPlayers.Add(new MatchPlayerDto(player: player,
-                    win: WebDriver.FindElement(By.XPath(@"//*[@id=""__next""]/div[5]/li/div[2]/div[1]/table[1]/thead/tr/th[1]/span")).Text == "Vitória", 
+                    win: SeleniumWebDriver.WebDriver.FindElement(By.XPath(@"//*[@id=""__next""]/div[5]/li/div[2]/div[1]/table[1]/thead/tr/th[1]/span")).Text == "Vitória", 
                     rank: tr.FindElement(By.XPath(@$"//*[@id='__next']/div[5]/li/div[2]/div[1]/table[1]/tbody/tr[{i}]/td[5]/div/div[2]/div")).Text, 
                     score: Convert.ToDouble(tr.FindElement(By.XPath(@$"//*[@id='__next']/div[5]/li/div[2]/div[1]/table[1]/tbody/tr[{i}]/td[5]/div/div[1]")).Text.Replace('.', ','))));
             }
