@@ -49,6 +49,9 @@ namespace RankDasEstrelas.Bot.Commands
                         await commandContext.RespondAsync("você ja está cadastrado.");
 
                     var nickName = await new Interaction(commandContext).WaitForReponseAsync("Informe seu Nick no Lol");
+
+                    await commandContext.TriggerTypingAsync();
+
                     if (nickName.Result is not null)
                     {
                         player = new Player(commandContext.User.Id.ToString(), commandContext.User.Username, nickName.Result.ToString());
@@ -75,6 +78,8 @@ namespace RankDasEstrelas.Bot.Commands
                 {
                     var url = new Interaction(commandContext).WaitForReponseAsync("Informe a URL da partida no op.GG").GetAwaiter().GetResult().Result;
 
+                    await commandContext.TriggerTypingAsync();
+
                     if (url.Contains(';'))
                     {
                         foreach (var item in url.Split(';'))
@@ -100,6 +105,8 @@ namespace RankDasEstrelas.Bot.Commands
             {
                 using (await mongoSession.StartSessionAsync())
                 {
+                    await commandContext.TriggerTypingAsync();
+
                     var player = await playerRepository.FindByIdAsync(commandContext.User.Id.ToString());
                     if (player is null)
                         await commandContext.RespondAsync("você não está cadastrado. Utilize o comando !cadastritoMuchoLouco para se cadastrar.");
@@ -136,6 +143,8 @@ namespace RankDasEstrelas.Bot.Commands
             {
                 using (await mongoSession.StartSessionAsync())
                 {
+                    await commandContext.TriggerTypingAsync();
+
                     await commandContext.WriteAsync(await rankingTableService.GetRankingTable());
                 }
             }
@@ -154,6 +163,8 @@ namespace RankDasEstrelas.Bot.Commands
             {
                 using (await mongoSession.StartSessionAsync())
                 {
+                    await commandContext.TriggerTypingAsync();
+
                     await rankingTableService.BuildRankingTable();
 
                     await commandContext.WriteAsync(await rankingTableService.GetRankingTable());
