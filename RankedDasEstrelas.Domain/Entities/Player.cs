@@ -25,6 +25,8 @@ namespace RankedDasEstrelas.Domain.Entities
         public int ACEs { get; private set; }
         public double Score { get; private set; }
 
+        public void AlterNickName(string nickName) => NickName = nickName;
+
         public void UpdateStatistics(bool win, bool mvp, bool ace, double score)
         {
             GamesPlayed++;
