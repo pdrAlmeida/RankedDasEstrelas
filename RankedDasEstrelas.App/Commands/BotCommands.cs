@@ -176,6 +176,46 @@ namespace RankDasEstrelas.Bot.Commands
             }
         }
 
+        [Command("updateNick")]
+        [Aliases("attNick")]
+        [Description("Atualiza o nick no Lol")]
+        public async Task UpdateLolNickName(CommandContext commandContext)
+        {
+            try
+            {
+                using (await mongoSession.StartSessionAsync())
+                {
+                    await commandContext.TriggerTypingAsync();
+
+                    var player = await playerRepository.FindByIdAsync(commandContext.User.Id.ToString());
+
+                    if (player is null)
+                        await commandContext.RespondAsync("Você não está cadastrado. Utilize o comando !cadastritoMuchoLouco para se cadastrar.");
+
+                    else 
+                    {
+                        var newNickName = new Interaction(commandContext).WaitForReponseAsync($"Seu nick atual no Bot é: {player.NickName}. Digite o novo nick").GetAwaiter().GetResult().Result;
+                        if (newNickName is not null) 
+                        {
+                            if (newNickName == player.NickName)
+                                await commandContext.RespondAsync("O nick informado é o mesmo já cadastrado");
+                            else 
+                            {
+                                player.AlterNickName(newNickName);
+                                await playerRepository.SaveAsync(player);
+                                await commandContext.RespondAsync($"O seu nick foi alterado com sucesso {newNickName}!");
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await Exception(commandContext, ex);
+            }
+        }
+
         private async Task Exception(CommandContext commandContext, Exception ex, bool? mentionUser = false)
         {
             Console.WriteLine(ex);
