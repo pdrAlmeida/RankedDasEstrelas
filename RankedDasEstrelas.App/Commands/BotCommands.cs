@@ -45,20 +45,24 @@ namespace RankDasEstrelas.Bot.Commands
                 using (await mongoSession.StartSessionAsync())
                 {
                     var player = await playerRepository.FindByIdAsync(commandContext.User.Id.ToString());
+
                     if (player is not null)
-                        await commandContext.RespondAsync("você ja está cadastrado.");
+                        await commandContext.RespondAsync("Você ja está cadastrado.");
 
-                    var nickName = await new Interaction(commandContext).WaitForReponseAsync("Informe seu Nick no Lol");
-
-                    await commandContext.TriggerTypingAsync();
-
-                    if (nickName.Result is not null)
+                    else
                     {
-                        player = new Player(commandContext.User.Id.ToString(), commandContext.User.Username, nickName.Result.ToString());
+                        var nickName = await new Interaction(commandContext).WaitForReponseAsync("Informe seu Nick no Lol");
 
-                        await playerRepository.SaveAsync(player);
+                        await commandContext.TriggerTypingAsync();
 
-                        await commandContext.RespondAsync("o seu cadastro foi realizado com sucesso!");
+                        if (nickName.Result is not null)
+                        {
+                            player = new Player(commandContext.User.Id.ToString(), commandContext.User.Username, nickName.Result.ToString());
+
+                            await playerRepository.SaveAsync(player);
+
+                            await commandContext.RespondAsync("O seu cadastro foi realizado com sucesso!");
+                        }
                     }
                 }
             }
