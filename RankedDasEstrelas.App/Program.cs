@@ -5,7 +5,6 @@ using RankedDasEstrelas.Domain.Interfaces.Services;
 using RankedDasEstrelas.Domain.Services;
 using RankedDasEstrelas.Domain.Validations;
 using RankedDasEstrelas.Infra.DbContext;
-using RankedDasEstrelas.Infra.Interfaces;
 using RankedDasEstrelas.Infra.Repositories;
 using RankedDasEstrelas.Selenium.Interfaces;
 using RankedDasEstrelas.Selenium.Services;
@@ -47,7 +46,6 @@ namespace RankDasEstrelas.Bot
         {
             return new ServiceCollection()
                 .AddSingleton(MongoDbContext)
-                .AddScoped<IMongoSession, MongoSession>()
                 .AddScoped<ISeleniumService, SeleniumService>()
                 .AddScoped<IPlayerRepository, PlayerRepository>()
                 .AddScoped<IMatchRepository, MatchRepository>()

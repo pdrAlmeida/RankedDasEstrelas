@@ -6,8 +6,7 @@ namespace RankedDasEstrelas.Infra.DbContext
 {
     public class MongoDBContext
     {
-        public IMongoClient Client { get; }
-        public IMongoDatabase Database { get; }
+        private IMongoDatabase Database { get; }
         public IMongoCollection<Player> Players { get; }
         public IMongoCollection<Match> Matches { get; }
         public IMongoCollection<RankingTable> RankingTable { get; }
@@ -15,8 +14,7 @@ namespace RankedDasEstrelas.Infra.DbContext
         public MongoDBContext(string connection)
         {
             var mongoUrl = new MongoUrl(connection);
-            Client = new MongoClient(mongoUrl);
-            Database = Client.GetDatabase(mongoUrl.DatabaseName);
+            Database = new MongoClient(mongoUrl).GetDatabase(mongoUrl.DatabaseName);
             Players = Database.CreateCollection<Player>("Players");
             Matches = Database.CreateCollection<Match>("Matches");
             RankingTable = Database.CreateCollection<RankingTable>("RankingTable");
