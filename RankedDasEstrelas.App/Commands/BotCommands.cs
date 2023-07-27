@@ -75,8 +75,6 @@ namespace RankDasEstrelas.Bot.Commands
             {
                 var url = new Interaction(commandContext).WaitForReponseAsync("Informe a URL da partida no op.GG").GetAwaiter().GetResult().Result;
 
-                await commandContext.TriggerTypingAsync();
-
                 if (url.Contains(';'))
                 {
                     foreach (var item in url.Split(';'))
@@ -215,6 +213,8 @@ namespace RankDasEstrelas.Bot.Commands
 
         private async Task ProcessMatchData(CommandContext commandContext, string url)
         {
+            await commandContext.TriggerTypingAsync();
+
             var validations = this.validations.ValidateSentMatch(url);
             if (validations.All(p => p.Valid))
             {
