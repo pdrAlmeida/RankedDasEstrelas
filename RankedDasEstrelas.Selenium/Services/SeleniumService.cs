@@ -80,6 +80,8 @@ namespace RankedDasEstrelas.Selenium.Services
         {
             List<MatchPlayerDto> matchPlayers = new();
 
+            var result = SeleniumWebDriver.WebDriver.FindElement(By.XPath(@"//*[@id=""__next""]/div[5]/li/div[2]/div[1]/table[1]/thead/tr/th[1]/span")).Text;
+
             for (int i = 1; i < 6; i++)
             {
                 var tr = SeleniumWebDriver.WebDriver.FindElement(By.XPath(@$"//*[@id='__next']/div[5]/li/div[2]/div[1]/table[1]/tbody/tr[{i}]"));
@@ -87,7 +89,7 @@ namespace RankedDasEstrelas.Selenium.Services
                 var player = playerRepository.FindByNickNameAsync(nick).Result ?? throw new Exception($"O jogador {nick} não está cadastrado!");
 
                 matchPlayers.Add(new MatchPlayerDto(player: player,
-                    win: SeleniumWebDriver.WebDriver.FindElement(By.XPath(@"//*[@id=""__next""]/div[5]/li/div[2]/div[1]/table[1]/thead/tr/th[1]/span")).Text == "Vitória", 
+                    win: result == "Victory" || result == "Vitória", 
                     rank: tr.FindElement(By.XPath(@$"//*[@id='__next']/div[5]/li/div[2]/div[1]/table[1]/tbody/tr[{i}]/td[5]/div/div[2]/div")).Text, 
                     score: Convert.ToDouble(tr.FindElement(By.XPath(@$"//*[@id='__next']/div[5]/li/div[2]/div[1]/table[1]/tbody/tr[{i}]/td[5]/div/div[1]")).Text.Replace('.', ','))));
             }
